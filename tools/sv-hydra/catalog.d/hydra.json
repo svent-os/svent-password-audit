@@ -1,0 +1,1 @@
+{"schema":1,"name":"hydra","group":"password-audit","description":"Network login auditor","packaging":"debian","package":"hydra","executables":["hydra"],"official_source":"https://github.com/vanhauser-thc/thc-hydra","version_policy":"follow-debian-testing","functional_test":["hydra","--version"],"functional_test_any_exit":true}

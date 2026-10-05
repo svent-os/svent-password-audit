@@ -1,0 +1,13 @@
+Source: sv-tools-password-audit
+Section: metapackages
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: sv-tools-password-audit
+Architecture: all
+Depends: svent-core, sv-hydra, ${misc:Depends}
+Description: Svent password-audit tool group
+ Installs every Svent tool in the password-audit category.

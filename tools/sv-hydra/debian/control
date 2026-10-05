@@ -1,0 +1,13 @@
+Source: sv-hydra
+Section: metapackages
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: sv-hydra
+Architecture: all
+Depends: svent-core, hydra, ${misc:Depends}
+Description: Svent password-audit tool: hydra
+ Installs hydra and registers it in the Svent catalog and menu.
