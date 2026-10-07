@@ -1,0 +1,1 @@
+{"schema":1,"name":"cewl","group":"password-audit","description":"Custom wordlist generator from a website","packaging":"debian","package":"cewl","executables":["cewl"],"official_source":"https://github.com/digininja/CeWL","version_policy":"follow-debian-testing","functional_test":["cewl","--version"],"functional_test_any_exit":true}

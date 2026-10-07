@@ -1,0 +1,1 @@
+{"schema":1,"name":"crunch","group":"password-audit","description":"Wordlist generator by pattern","packaging":"debian","package":"crunch","executables":["crunch"],"official_source":"https://github.com/crunchsec/crunch","version_policy":"follow-debian-testing","functional_test":["crunch","--version"],"functional_test_any_exit":true}

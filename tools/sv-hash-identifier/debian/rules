@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+PKG = sv-hash-identifier
+PREFIX = /opt/sv-hash-identifier
+DESTDIR = $(CURDIR)/debian/sv-hash-identifier
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+override_dh_auto_build:
+override_dh_auto_test:
+
+override_dh_auto_install:
+	rm -rf $(CURDIR)/.src
+	git clone --depth 1 https://github.com/blackploit/hash-identifier $(CURDIR)/.src
+	rm -rf $(CURDIR)/.src/.git
+	mkdir -p $(DESTDIR)$(PREFIX)
+	cp -a $(CURDIR)/.src/. $(DESTDIR)$(PREFIX)/
+	mkdir -p $(DESTDIR)/usr/bin
+	install -D -m755 files/hash-identifier $(DESTDIR)/usr/bin/hash-identifier
+	mkdir -p $(DESTDIR)/usr/share/svent/catalog.d
+	cp catalog.d/hash-identifier.json $(DESTDIR)/usr/share/svent/catalog.d/
+
+override_dh_auto_clean:
+	rm -rf $(CURDIR)/.src $(CURDIR)/.venv

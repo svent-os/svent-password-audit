@@ -1,0 +1,1 @@
+{"schema":1,"name":"ncrack","group":"password-audit","description":"High-speed network authentication cracker","packaging":"debian","package":"ncrack","executables":["ncrack"],"official_source":"https://nmap.org/ncrack","version_policy":"follow-debian-testing","functional_test":["ncrack","--version"],"functional_test_any_exit":true}

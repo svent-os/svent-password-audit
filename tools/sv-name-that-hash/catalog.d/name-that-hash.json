@@ -1,0 +1,1 @@
+{"schema":1,"name":"name-that-hash","group":"password-audit","description":"Identify hash types (modern)","packaging":"svent","package":"sv-name-that-hash","executables":["nth","name-that-hash"],"official_source":"https://github.com/HashPals/Name-That-Hash","version_policy":"svent-packaged","functional_test":["nth","--version"],"functional_test_any_exit":true}

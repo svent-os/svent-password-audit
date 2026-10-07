@@ -1,0 +1,1 @@
+{"schema":1,"name":"hashcat","group":"password-audit","description":"Advanced GPU/CPU password recovery","packaging":"debian","package":"hashcat","executables":["hashcat"],"official_source":"https://hashcat.net/hashcat","version_policy":"follow-debian-testing","functional_test":["hashcat","--version"],"functional_test_any_exit":true}

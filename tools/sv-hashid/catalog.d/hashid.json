@@ -1,0 +1,1 @@
+{"schema":1,"name":"hashid","group":"password-audit","description":"Identify the type of a hash","packaging":"svent","package":"sv-hashid","executables":["hashid"],"official_source":"https://github.com/psypanda/hashID","version_policy":"svent-packaged","functional_test":["hashid","--version"],"functional_test_any_exit":true}

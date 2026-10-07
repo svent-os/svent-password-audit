@@ -1,0 +1,1 @@
+{"schema":1,"name":"hash-identifier","group":"password-audit","description":"Hash type identifier (interactive)","packaging":"svent","package":"sv-hash-identifier","executables":["hash-identifier"],"official_source":"https://github.com/blackploit/hash-identifier","version_policy":"svent-packaged","functional_test":["hash-identifier","--help"],"functional_test_any_exit":true}
