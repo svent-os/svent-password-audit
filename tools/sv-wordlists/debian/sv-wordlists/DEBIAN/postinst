@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+ROOT=/opt/lists
+case "$1" in
+  configure)
+    mkdir -p "$ROOT"
+    if [ ! -d "$ROOT/seclists/.git" ] && [ -z "$(ls -A "$ROOT/seclists" 2>/dev/null)" ]; then
+      echo "sv-wordlists: cloning SecLists (~1.3GB, puede tardar varios minutos) ..."
+      git clone --depth 1 https://github.com/danielmiessler/SecLists "$ROOT/seclists" && echo "  [+] seclists" || echo "  [!] seclists" >&2
+    fi
+    rk=$(find "$ROOT/seclists" -name 'rockyou.txt.tar.gz' 2>/dev/null | head -1)
+    if [ -n "$rk" ] && [ ! -s "$ROOT/rockyou.txt" ]; then
+      tar xzf "$rk" -C "$ROOT" && echo "  [+] rockyou.txt" || echo "  [!] rockyou" >&2
+    fi
+    for f in onelistforallmicro.txt onelistforallshort.txt; do
+      curl -sfL "https://raw.githubusercontent.com/six2dez/OneListForAll/main/$f" -o "$ROOT/$f" && echo "  [+] $f" || echo "  [!] $f" >&2
+    done
+    echo "sv-wordlists: done. List with: lists"
+    ;;
+esac
+
+exit 0

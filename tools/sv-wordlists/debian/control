@@ -1,0 +1,13 @@
+Source: sv-wordlists
+Section: metapackages
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+
+Package: sv-wordlists
+Architecture: all
+Depends: svent-core, git, curl, ca-certificates, ${misc:Depends}
+Description: Svent wordlists (SecLists + rockyou + OneListForAll)
+ Downloads SecLists, rockyou.txt and OneListForAll (micro/short) into
+ /opt/lists for fuzzers and password crackers. Fetched at install time (~1.3GB).

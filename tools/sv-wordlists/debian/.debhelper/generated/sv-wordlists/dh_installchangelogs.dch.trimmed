@@ -1,0 +1,5 @@
+sv-wordlists (1.0.0) unstable; urgency=medium
+
+  * Downloader for SecLists + rockyou + OneListForAll into /opt/lists.
+
+ -- z1rov <fabian@zirov.net>  Wed, 07 Oct 2026 00:30:50 -0400

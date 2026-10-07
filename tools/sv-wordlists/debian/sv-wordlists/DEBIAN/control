@@ -1,0 +1,11 @@
+Package: sv-wordlists
+Version: 1.0.0
+Architecture: all
+Maintainer: z1rov <fabian@zirov.net>
+Installed-Size: 15
+Depends: svent-core, git, curl, ca-certificates
+Section: metapackages
+Priority: optional
+Description: Svent wordlists (SecLists + rockyou + OneListForAll)
+ Downloads SecLists, rockyou.txt and OneListForAll (micro/short) into
+ /opt/lists for fuzzers and password crackers. Fetched at install time (~1.3GB).

@@ -1,0 +1,7 @@
+#!/usr/bin/make -f
+DESTDIR = $(CURDIR)/debian/sv-wordlists
+%:
+	dh $@
+override_dh_auto_install:
+	install -D -m755 files/lists $(DESTDIR)/usr/bin/lists
+	install -D -m644 catalog.d/wordlists.json $(DESTDIR)/usr/share/svent/catalog.d/wordlists.json
