@@ -1,6 +1,0 @@
-#!/bin/sh
-ROOT=/opt/lists
-case "$1" in -h|--help) echo "lists: shows the wordlists in $ROOT"; exit 0 ;; esac
-[ ! -d "$ROOT" ] && { echo "Not downloaded. Run: sudo apt install --reinstall sv-wordlists" >&2; exit 1; }
-echo "Svent wordlists: $ROOT"; echo
-ls -lah "$ROOT"

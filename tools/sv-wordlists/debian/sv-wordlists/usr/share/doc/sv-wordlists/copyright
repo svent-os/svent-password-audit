@@ -1,8 +1,0 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: sv-wordlists
-
-Files: *
-Copyright: 2026 z1rov <fabian@zirov.net>
-License: Svent-packaging
- Installer only. Wordlists are downloaded from their upstream projects and
- remain under their own licenses.

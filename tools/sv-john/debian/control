@@ -1,0 +1,16 @@
+Source: sv-john
+Section: admin
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13), git, ca-certificates, build-essential, libssl-dev, zlib1g-dev, libgmp-dev, libpcap-dev, libbz2-dev, pkg-config, yasm, python3-venv, python3-dev
+Standards-Version: 4.7.0
+
+Package: sv-john
+Architecture: amd64
+Depends: svent-core, python3, perl, libcompress-raw-lzma-perl, libdigest-crc-perl, ${shlibs:Depends}, ${misc:Depends}
+Conflicts: john
+Replaces: john
+Description: Svent password-audit tool: John the Ripper (jumbo, source)
+ John the Ripper jumbo from upstream under /opt/sv-john, with C, Python (own
+ venv) and Perl *2john helpers wrapped into /usr/bin. Self-contained; does not
+ touch the system Python or other tools.

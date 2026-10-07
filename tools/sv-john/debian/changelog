@@ -1,0 +1,17 @@
+sv-john (1.2.0) unstable; urgency=medium
+
+  * Wrap Perl *2john helpers (7z2john, etc.); guard pdf2john collision; add olefile/pycryptodome.
+
+ -- z1rov <fabian@zirov.net>  Wed, 07 Oct 2026 01:11:51 -0400
+
+sv-john (1.1.0) unstable; urgency=medium
+
+  * Wrapper for john (fixes John home); isolated venv for Python *2john helpers (pyhanko).
+
+ -- z1rov <fabian@zirov.net>  Wed, 07 Oct 2026 00:57:35 -0400
+
+sv-john (1.0.0) unstable; urgency=medium
+
+  * John the Ripper jumbo compiled from upstream with all *2john helpers.
+
+ -- z1rov <fabian@zirov.net>  Wed, 07 Oct 2026 00:41:26 -0400

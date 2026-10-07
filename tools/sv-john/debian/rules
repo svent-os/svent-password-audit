@@ -1,0 +1,39 @@
+#!/usr/bin/make -f
+PKG = sv-john
+PREFIX = /opt/sv-john
+DESTDIR = $(CURDIR)/debian/sv-john
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+override_dh_auto_build:
+override_dh_auto_test:
+
+override_dh_auto_install:
+	rm -rf $(CURDIR)/.src $(CURDIR)/.venv
+	git clone --depth 1 https://github.com/openwall/john $(CURDIR)/.src
+	cd $(CURDIR)/.src/src && ./configure && make -s -j"$$(nproc)"
+	mkdir -p $(DESTDIR)$(PREFIX)
+	cp -a $(CURDIR)/.src/run/. $(DESTDIR)$(PREFIX)/
+	python3 -m venv $(CURDIR)/.venv
+	$(CURDIR)/.venv/bin/pip install --no-cache-dir --upgrade pip wheel "setuptools<81"
+	$(CURDIR)/.venv/bin/pip install --no-cache-dir pyhanko olefile pycryptodome
+	cp -a $(CURDIR)/.venv $(DESTDIR)$(PREFIX)/.venv
+	find $(DESTDIR)$(PREFIX)/.venv/bin -type f -exec sed -i "1s|$(CURDIR)/.venv|$(PREFIX)/.venv|" {} +
+	sed -i "s|$(CURDIR)/.venv|$(PREFIX)/.venv|g" $(DESTDIR)$(PREFIX)/.venv/pyvenv.cfg
+	mkdir -p $(DESTDIR)/usr/bin
+	for b in john unshadow unafs undrop base64conv; do [ -f "$(DESTDIR)$(PREFIX)/$$b" ] && { printf '#!/bin/sh\nexec %s/%s "$$@"\n' "$(PREFIX)" "$$b" > $(DESTDIR)/usr/bin/$$b; chmod 755 $(DESTDIR)/usr/bin/$$b; } || true; done
+	for f in $(DESTDIR)$(PREFIX)/*2john; do [ -e "$$f" ] || continue; b=$$(basename "$$f"); [ -e "$(DESTDIR)/usr/bin/$$b" ] && continue; printf '#!/bin/sh\nexec %s/%s "$$@"\n' "$(PREFIX)" "$$b" > $(DESTDIR)/usr/bin/$$b; chmod 755 $(DESTDIR)/usr/bin/$$b; done
+	for f in $(DESTDIR)$(PREFIX)/*2john.py; do [ -e "$$f" ] || continue; b=$$(basename "$$f"); n=$${b%.py}; [ -e "$(DESTDIR)/usr/bin/$$n" ] && continue; printf '#!/bin/sh\nexec %s/.venv/bin/python %s/%s "$$@"\n' "$(PREFIX)" "$(PREFIX)" "$$b" > $(DESTDIR)/usr/bin/$$n; chmod 755 $(DESTDIR)/usr/bin/$$n; done
+	for f in $(DESTDIR)$(PREFIX)/*2john.pl; do [ -e "$$f" ] || continue; b=$$(basename "$$f"); n=$${b%.pl}; [ -e "$(DESTDIR)/usr/bin/$$n" ] && continue; printf '#!/bin/sh\nexec perl %s/%s "$$@"\n' "$(PREFIX)" "$$b" > $(DESTDIR)/usr/bin/$$n; chmod 755 $(DESTDIR)/usr/bin/$$n; done
+	mkdir -p $(DESTDIR)/usr/share/svent/catalog.d
+	cp catalog.d/john.json $(DESTDIR)/usr/share/svent/catalog.d/
+
+override_dh_auto_clean:
+	rm -rf $(CURDIR)/.src $(CURDIR)/.venv
+
+override_dh_strip:
+override_dh_dwz:
+override_dh_shlibdeps:
+	dh_shlibdeps || true
