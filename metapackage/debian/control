@@ -8,6 +8,6 @@ Rules-Requires-Root: no
 
 Package: sv-tools-password-audit
 Architecture: all
-Depends: svent-core, sv-hydra, sv-hashcat, sv-medusa, sv-ncrack, sv-cewl, sv-crunch, sv-patator, sv-hashid, sv-name-that-hash, sv-hash-identifier, ${misc:Depends}
+Depends: svent-core, sv-hydra, sv-hashcat, sv-medusa, sv-ncrack, sv-cewl, sv-crunch, sv-hashid, sv-name-that-hash, sv-hash-identifier, ${misc:Depends}
 Description: Svent password-audit tool group
  Installs every Svent tool in the password-audit category.
