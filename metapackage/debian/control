@@ -1,5 +1,5 @@
 Source: sv-tools-password-audit
-Section: metapackages
+Section: admin
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
 Build-Depends: debhelper-compat (= 13)
@@ -8,6 +8,6 @@ Rules-Requires-Root: no
 
 Package: sv-tools-password-audit
 Architecture: all
-Depends: svent-core, sv-hydra, sv-hashcat, sv-medusa, sv-ncrack, sv-cewl, sv-crunch, sv-hashid, sv-name-that-hash, sv-hash-identifier, ${misc:Depends}
-Description: Svent password-audit tool group
- Installs every Svent tool in the password-audit category.
+Depends: svent-core (>= 0.4.4), sv-cewl (>= 0.1.1), sv-crunch (>= 0.1.1), sv-hash-identifier (>= 0.1.1), sv-hashcat (>= 0.1.1), sv-hashid (>= 0.1.1), sv-hydra (>= 0.1.1), sv-john (>= 1.2.1), sv-medusa (>= 0.1.1), sv-name-that-hash (>= 0.1.1), sv-ncrack (>= 0.1.1), sv-wordlists (>= 1.0.1), ${misc:Depends}
+Description: Complete Svent password audit tool group
+ Registers the native command in the Svent password audit catalog.

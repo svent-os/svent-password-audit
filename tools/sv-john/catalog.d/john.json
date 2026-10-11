@@ -1,1 +1,32 @@
-{"schema":1,"name":"john","group":"password-audit","description":"John the Ripper (jumbo, compiled from source) with all *2john helpers","packaging":"svent","package":"sv-john","executables":["john","zip2john","rar2john","ssh2john"],"official_source":"https://github.com/openwall/john","version_policy":"svent-packaged","functional_test":["john","--help"],"functional_test_any_exit":true}
+{
+  "schema": 1,
+  "name": "john",
+  "group": "password-audit",
+  "description": "John the Ripper (jumbo, compiled from source) with all *2john helpers",
+  "packaging": "svent",
+  "package": "sv-john",
+  "executables": [
+    "john",
+    "unshadow",
+    "zip2john",
+    "rar2john",
+    "7z2john",
+    "ssh2john",
+    "keepass2john",
+    "office2john",
+    "pdf2john",
+    "pfx2john"
+  ],
+  "official_source": "https://github.com/openwall/john",
+  "version_policy": "svent-packaged",
+  "functional_test": [
+    "john",
+    "--list=build-info"
+  ],
+  "functional_test_any_exit": true,
+  "isolation": {
+    "kind": "compiled-with-venv",
+    "prefix": "/opt/sv-john/.venv",
+    "python": "/opt/sv-john/.venv/bin/python"
+  }
+}

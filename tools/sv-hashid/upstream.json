@@ -1,0 +1,15 @@
+{
+  "package": "sv-hashid",
+  "kind": "python",
+  "archive_url": "https://files.pythonhosted.org/packages/09/ce/d26df4843e6d62ce016a126e8faae1905b6f2b5629a59982dd3af23761aa/hashID-3.1.4.zip",
+  "sha256": "af8f7f4c48e95139fd6298f17cb96d46a449312efc402f4d1566a1482df563c7",
+  "license": "GPL-3.0-or-later",
+  "constraints": [
+    "hashID==3.1.4",
+    "setuptools==80.9.0"
+  ],
+  "commands": {
+    "hashid": "hashid"
+  },
+  "version": "3.1.4"
+}

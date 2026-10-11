@@ -1,5 +1,5 @@
 Source: sv-cewl
-Section: metapackages
+Section: admin
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
 Build-Depends: debhelper-compat (= 13)
@@ -8,6 +8,6 @@ Rules-Requires-Root: no
 
 Package: sv-cewl
 Architecture: all
-Depends: svent-core, cewl, ${misc:Depends}
-Description: Svent password-audit tool: cewl
- Installs cewl and registers it in the Svent catalog and menu.
+Depends: svent-core (>= 0.4.4), cewl, ${misc:Depends}
+Description: Svent password audit tool: cewl
+ Registers the native command in the Svent password audit catalog.

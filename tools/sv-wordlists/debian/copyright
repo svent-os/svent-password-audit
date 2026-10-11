@@ -1,8 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: sv-wordlists
 
-Files: *
+Files: debian/* catalog.d/* files/* *.json
 Copyright: 2026 z1rov <fabian@zirov.net>
-License: Svent-packaging
- Installer only. Wordlists are downloaded from their upstream projects and
- remain under their own licenses.
+License: GPL-3.0-or-later
+ On Debian systems the complete license is in /usr/share/common-licenses/GPL-3.

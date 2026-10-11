@@ -1,5 +1,5 @@
 Source: sv-ncrack
-Section: metapackages
+Section: admin
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
 Build-Depends: debhelper-compat (= 13)
@@ -8,6 +8,6 @@ Rules-Requires-Root: no
 
 Package: sv-ncrack
 Architecture: all
-Depends: svent-core, ncrack, ${misc:Depends}
-Description: Svent password-audit tool: ncrack
- Installs ncrack and registers it in the Svent catalog and menu.
+Depends: svent-core (>= 0.4.4), ncrack, ${misc:Depends}
+Description: Svent password audit tool: ncrack
+ Registers the native command in the Svent password audit catalog.

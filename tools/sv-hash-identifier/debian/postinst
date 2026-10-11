@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+if [ "$1" = configure ]; then
+    /usr/bin/python3 -I /usr/libexec/svent/sv-hash-identifier-download.py /usr/share/svent/downloads/sv-hash-identifier.json --configure
+fi
+#DEBHELPER#

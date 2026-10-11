@@ -1,2 +1,15 @@
 #!/bin/sh
-exec python3 /opt/sv-hash-identifier/hash-id.py "$@"
+set -eu
+case "${1:-}" in
+-h|--help) printf 'Usage: hash-identifier [HASH]
+'; exit 0 ;;
+esac
+unset PYTHONPATH PYTHONHOME PYTHONUSERBASE PYTHONSTARTUP
+exec /usr/bin/python3 -I -c '
+import runpy, sys
+sys.argv[0] = "/opt/sv-hash-identifier/hash-id.py"
+try:
+    runpy.run_path(sys.argv[0], run_name="__main__")
+except (EOFError, KeyboardInterrupt):
+    pass
+' "$@"

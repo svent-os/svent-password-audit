@@ -1,13 +1,13 @@
 Source: sv-hash-identifier
-Section: net
+Section: admin
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
-Build-Depends: debhelper-compat (= 13), git, ca-certificates
+Build-Depends: debhelper-compat (= 13)
 Standards-Version: 4.7.0
+Rules-Requires-Root: no
 
 Package: sv-hash-identifier
 Architecture: all
-Depends: svent-core, python3, ${misc:Depends}
-Description: Svent password-audit tool: hash-identifier
- Vendored and isolated under /opt/sv-hash-identifier so its dependencies never
- touch the system packages or other tools.
+Depends: svent-core (>= 0.4.4), python3, ca-certificates, ${misc:Depends}
+Description: Svent password audit tool: hash-identifier
+ Registers the native command in the Svent password audit catalog.

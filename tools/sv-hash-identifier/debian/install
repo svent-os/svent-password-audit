@@ -1,0 +1,2 @@
+catalog.d/*.json usr/share/svent/catalog.d/
+files/* usr/bin/

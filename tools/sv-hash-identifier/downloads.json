@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "package": "sv-hash-identifier",
+  "root": "/opt/sv-hash-identifier",
+  "files": [
+    {
+      "path": "hash-id.py",
+      "url": "https://raw.githubusercontent.com/blackploit/hash-identifier/0e08a97ae0ae06cfa359d40d27d6465f79b4cf2c/hash-id.py",
+      "sha256": "d523ad28ccb6fa9635b74255de7938b94e860c3a6fad1f94ebbc0000b56a64f2",
+      "size": 35345
+    }
+  ],
+  "license": "No explicit upstream license found; downloaded directly, not redistributed in this package."
+}

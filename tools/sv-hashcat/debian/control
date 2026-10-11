@@ -1,5 +1,5 @@
 Source: sv-hashcat
-Section: metapackages
+Section: admin
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
 Build-Depends: debhelper-compat (= 13)
@@ -8,6 +8,6 @@ Rules-Requires-Root: no
 
 Package: sv-hashcat
 Architecture: all
-Depends: svent-core, hashcat, ${misc:Depends}
-Description: Svent password-audit tool: hashcat
- Installs hashcat and registers it in the Svent catalog and menu.
+Depends: svent-core (>= 0.4.4), hashcat, pocl-opencl-icd | opencl-icd, ${misc:Depends}
+Description: Svent password audit tool: hashcat
+ Registers the native command in the Svent password audit catalog.

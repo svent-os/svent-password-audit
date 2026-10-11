@@ -1,3 +1,9 @@
+sv-tools-password-audit (0.2.1) unstable; urgency=medium
+
+  * Require all eleven password audit tools, including John and wordlists.
+
+ -- z1rov <fabian@zirov.net>  Sat, 10 Oct 2026 23:00:00 -0500
+
 sv-tools-password-audit (0.2.0) unstable; urgency=medium
 
   * Drop patator (cx-oracle build fails on py3.13; redundant with hydra/medusa/ncrack).

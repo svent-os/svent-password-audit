@@ -1,5 +1,5 @@
 Source: sv-medusa
-Section: metapackages
+Section: admin
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
 Build-Depends: debhelper-compat (= 13)
@@ -8,6 +8,6 @@ Rules-Requires-Root: no
 
 Package: sv-medusa
 Architecture: all
-Depends: svent-core, medusa, ${misc:Depends}
-Description: Svent password-audit tool: medusa
- Installs medusa and registers it in the Svent catalog and menu.
+Depends: svent-core (>= 0.4.4), medusa, ${misc:Depends}
+Description: Svent password audit tool: medusa
+ Registers the native command in the Svent password audit catalog.

@@ -1,1 +1,21 @@
-{"schema":1,"name":"medusa","group":"password-audit","description":"Parallel network login brute-forcer","packaging":"debian","package":"medusa","executables":["medusa"],"official_source":"https://github.com/jmk-foofus/medusa","version_policy":"follow-debian-testing","functional_test":["medusa","--version"],"functional_test_any_exit":true}
+{
+  "schema": 1,
+  "name": "medusa",
+  "group": "password-audit",
+  "description": "Parallel network login brute-forcer",
+  "packaging": "debian",
+  "package": "sv-medusa",
+  "executables": [
+    "medusa"
+  ],
+  "official_source": "https://github.com/jmk-foofus/medusa",
+  "version_policy": "follow-debian-testing",
+  "functional_test": [
+    "medusa",
+    "-V"
+  ],
+  "functional_test_any_exit": true,
+  "isolation": {
+    "kind": "system-apt"
+  }
+}

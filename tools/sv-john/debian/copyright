@@ -1,9 +1,12 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: john
-Source: https://github.com/openwall/john
+Upstream-Name: sv-john
 
-Files: *
-Copyright: 1996-2026 Alexander Peslyak and John the Ripper contributors
-License: GPL-2.0-or-later
- On Debian systems the full license text is in
- /usr/share/common-licenses/GPL-2.
+Files: debian/* catalog.d/* files/* *.json
+Copyright: 2026 z1rov <fabian@zirov.net>
+License: GPL-3.0-or-later
+ On Debian systems the complete license is in /usr/share/common-licenses/GPL-3.
+
+Files: upstream software
+Copyright: Upstream authors, retained in installed notices
+License: GPL-2.0-or-later WITH OpenSSL-exception
+ The original license texts and corresponding sources accompany the package.
