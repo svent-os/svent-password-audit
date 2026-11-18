@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 case "${1:-}" in
--h|--help) printf "Usage: lists [--check]\nWordlists: /opt/lists\n"; exit 0 ;;
+-h|--help) printf "Usage: lists [--check]\nWordlists: /usr/share/wordlists\nSecLists:  /usr/share/seclists\n"; exit 0 ;;
 --check) exec /usr/bin/python3 -I /usr/libexec/svent/sv-wordlists-download.py /usr/share/svent/downloads/sv-wordlists.json --check ;;
 esac
-ls -lah /opt/lists
+ls -lah /usr/share/wordlists /usr/share/seclists

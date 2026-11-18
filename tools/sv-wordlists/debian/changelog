@@ -1,3 +1,11 @@
+sv-wordlists (1.1.0) unstable; urgency=medium
+
+  * Standard Kali/Parrot layout: SecLists in /usr/share/seclists and
+    /usr/share/wordlists with tool symlinks, seclists link and rockyou.txt.gz.
+  * Stop using /opt/lists and drop OneListForAll.
+
+ -- z1rov <fabian@zirov.net>  Wed, 18 Nov 2026 15:50:00 -0500
+
 sv-wordlists (1.0.1) unstable; urgency=medium
 
   * Validate native commands, dependencies and complete group installation.

@@ -1,30 +1,70 @@
 {
   "schema": 1,
   "package": "sv-wordlists",
-  "root": "/opt/lists",
-  "files": [
-    {
-      "url": "https://raw.githubusercontent.com/six2dez/OneListForAll/32292ee62433c246826946824471d9b878b016c8/onelistforallmicro.txt",
-      "path": "onelistforallmicro.txt",
-      "size": 559035,
-      "sha256": "a1f0cc2e9ee61dc2d7ae2679cbe1a10915d92d8fd848a1102907506954693b7a"
-    },
-    {
-      "url": "https://raw.githubusercontent.com/six2dez/OneListForAll/32292ee62433c246826946824471d9b878b016c8/onelistforallshort.txt",
-      "path": "onelistforallshort.txt",
-      "size": 38888519,
-      "sha256": "cabd3c58dc3de24ba3d18ac6ea5ff20e0bcdf352a915609f4f55bf46c9b0ebb1"
-    }
-  ],
+  "root": "/usr/share/wordlists",
+  "files": [],
   "repositories": [
     {
+      "root": "/usr/share",
       "path": "seclists",
       "url": "https://github.com/danielmiessler/SecLists.git",
       "commit": "cae9eab995852c183fbe5e03fc92471fcac82f0e",
       "license": "MIT"
     }
   ],
-  "rockyou": "seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz",
-  "additional_source": "https://github.com/six2dez/OneListForAll",
-  "additional_license": "No explicit upstream license found; downloaded directly, not redistributed in this package."
+  "rockyou": "/usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz",
+  "links": [
+    {
+      "path": "brutespray",
+      "target": "/usr/share/brutespray/wordlist"
+    },
+    {
+      "path": "dirb",
+      "target": "/usr/share/dirb/wordlists"
+    },
+    {
+      "path": "dirbuster",
+      "target": "/usr/share/dirbuster/wordlists"
+    },
+    {
+      "path": "dnsmap.txt",
+      "target": "/usr/share/dnsmap/wordlist_TLAs.txt"
+    },
+    {
+      "path": "fasttrack.txt",
+      "target": "/usr/share/set/src/fasttrack/wordlist.txt"
+    },
+    {
+      "path": "fern-wifi",
+      "target": "/usr/share/fern-wifi-cracker/extras/wordlists"
+    },
+    {
+      "path": "john.lst",
+      "target": "/usr/share/john/password.lst"
+    },
+    {
+      "path": "metasploit",
+      "target": "/usr/share/metasploit-framework/data/wordlists"
+    },
+    {
+      "path": "nmap.lst",
+      "target": "/usr/share/nmap/nselib/data/passwords.lst"
+    },
+    {
+      "path": "seclists",
+      "target": "/usr/share/seclists"
+    },
+    {
+      "path": "sqlmap.txt",
+      "target": "/usr/share/sqlmap/data/txt/wordlist.txt"
+    },
+    {
+      "path": "wfuzz",
+      "target": "/usr/share/wfuzz/wordlist"
+    },
+    {
+      "path": "wifite.txt",
+      "target": "/usr/share/dict/wordlist-probable.txt"
+    }
+  ]
 }

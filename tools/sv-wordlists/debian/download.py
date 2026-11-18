@@ -1,5 +1,6 @@
 import argparse
 import fcntl
+import gzip
 import hashlib
 import json
 import os
@@ -16,6 +17,11 @@ STATE_ROOT = pathlib.Path('/var/lib/svent')
 
 def digest(path):
     with path.open('rb') as stream:
+        return hashlib.file_digest(stream, 'sha256').hexdigest()
+
+
+def gz_digest(path):
+    with gzip.open(path, 'rb') as stream:
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
@@ -43,14 +49,16 @@ def configure(manifest):
         fcntl.flock(lock, fcntl.LOCK_EX)
         records = json.loads(record_path.read_text()) if record_path.exists() else {}
         for item in manifest.get('repositories', []):
-            target = root / item['path']
+            repo_root = pathlib.Path(item.get('root', manifest['root']))
+            repo_root.mkdir(parents=True, exist_ok=True)
+            target = repo_root / item['path']
             if target.exists():
                 if target.is_symlink() or not (target / '.git').is_dir():
                     raise RuntimeError('Existing personal directory preserved: ' + str(target))
                 if command(['git', '-C', str(target), 'rev-parse', 'HEAD']) != item['commit']:
                     raise RuntimeError('Existing repository preserved; move it aside before configuring: ' + str(target))
             else:
-                with tempfile.TemporaryDirectory(prefix='.svent-download-', dir=root) as temporary:
+                with tempfile.TemporaryDirectory(prefix='.svent-download-', dir=repo_root) as temporary:
                     staging = pathlib.Path(temporary) / 'repository'
                     subprocess.run(['git', 'init', '-q', str(staging)], check=True)
                     subprocess.run(['git', '-C', str(staging), 'remote', 'add', 'origin', item['url']], check=True)
@@ -61,6 +69,10 @@ def configure(manifest):
                     if not (staging / 'LICENSE').is_file():
                         raise RuntimeError('Upstream license missing')
                     os.replace(staging, target)
+        for item in manifest.get('links', []):
+            link = root / item['path']
+            if not link.exists() and not link.is_symlink():
+                link.symlink_to(item['target'])
         for item in manifest['files']:
             target = root / item['path']
             if target.is_symlink() or not target.resolve().is_relative_to(root.resolve()):
@@ -87,8 +99,8 @@ def configure(manifest):
             temporary_record.write_text(json.dumps(records, indent=2) + '\n')
             os.replace(temporary_record, record_path)
         if manifest.get('rockyou'):
-            target = root / 'rockyou.txt'
-            archive = root / manifest['rockyou']
+            target = root / 'rockyou.txt.gz'
+            archive = pathlib.Path(manifest['rockyou'])
             if not archive.is_file():
                 raise RuntimeError('Rockyou archive missing')
             with tarfile.open(archive) as content:
@@ -96,16 +108,17 @@ def configure(manifest):
                 if len(members) != 1:
                     raise RuntimeError('Unexpected rockyou archive')
                 with tempfile.TemporaryDirectory(prefix='.svent-rockyou-', dir=root) as temporary:
-                    staging = pathlib.Path(temporary) / 'rockyou.txt'
-                    with content.extractfile(members[0]) as source, staging.open('wb') as output:
-                        shutil.copyfileobj(source, output)
-                    checksum = digest(staging)
-                    if target.exists() and digest(target) != checksum:
+                    staging = pathlib.Path(temporary) / 'rockyou.txt.gz'
+                    with content.extractfile(members[0]) as source, staging.open('wb') as raw:
+                        with gzip.GzipFile(filename='', mode='wb', fileobj=raw, compresslevel=9, mtime=0) as output:
+                            shutil.copyfileobj(source, output)
+                    checksum = gz_digest(staging)
+                    if target.exists() and gz_digest(target) != checksum:
                         raise RuntimeError('Existing rockyou file preserved')
                     if not target.exists():
                         staging.chmod(0o644)
                         os.replace(staging, target)
-                    records['rockyou.txt'] = checksum
+                    records['rockyou.txt.gz'] = checksum
         temporary_record = state / 'managed.json.tmp'
         temporary_record.write_text(json.dumps(records, indent=2) + '\n')
         os.replace(temporary_record, record_path)
@@ -119,14 +132,14 @@ def check(manifest):
         if not path.is_file() or path.is_symlink() or digest(path) != item['sha256']:
             raise RuntimeError('Missing or modified file: ' + str(path))
     for item in manifest.get('repositories', []):
-        target = root / item['path']
+        target = pathlib.Path(item.get('root', manifest['root'])) / item['path']
         if target.is_symlink() or command(['git', '-C', str(target), 'rev-parse', 'HEAD']) != item['commit']:
             raise RuntimeError('Repository commit mismatch')
         subprocess.run(['git', '-C', str(target), 'diff', '--exit-code', 'HEAD', '--'], check=True)
     if manifest.get('rockyou'):
         records = json.loads((STATE_ROOT / manifest['package'] / 'managed.json').read_text())
-        path = root / 'rockyou.txt'
-        if not path.is_file() or path.is_symlink() or digest(path) != records.get('rockyou.txt'):
+        path = root / 'rockyou.txt.gz'
+        if not path.is_file() or path.is_symlink() or gz_digest(path) != records.get('rockyou.txt.gz'):
             raise RuntimeError('Rockyou checksum mismatch')
     print('[+] Downloaded files verified successfully.')
 

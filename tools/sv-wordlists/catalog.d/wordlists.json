@@ -2,7 +2,7 @@
   "schema": 1,
   "name": "wordlists",
   "group": "password-audit",
-  "description": "SecLists + rockyou + OneListForAll wordlists in /opt/lists",
+  "description": "Standard Kali/Parrot layout: /usr/share/wordlists (tool symlinks + rockyou.txt.gz) and SecLists in /usr/share/seclists",
   "packaging": "svent",
   "package": "sv-wordlists",
   "executables": [
@@ -17,6 +17,6 @@
   "functional_test_any_exit": true,
   "isolation": {
     "kind": "downloaded-data",
-    "prefix": "/opt/lists"
+    "prefix": "/usr/share/wordlists"
   }
 }

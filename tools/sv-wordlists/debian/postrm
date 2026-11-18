@@ -1,3 +1,10 @@
 #!/bin/sh
 set -eu
+if [ "$1" = remove ] || [ "$1" = purge ]; then
+    for name in brutespray dirb dirbuster dnsmap.txt fasttrack.txt fern-wifi john.lst metasploit nmap.lst seclists sqlmap.txt wfuzz wifite.txt; do
+        if [ -L "/usr/share/wordlists/$name" ]; then
+            rm -f "/usr/share/wordlists/$name"
+        fi
+    done
+fi
 #DEBHELPER#
